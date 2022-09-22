@@ -24,17 +24,14 @@
         // (optional) Do something before API request prompt.
         DeviceMotionEvent.requestPermission()
             .then( response => {
-            // (optional) Do something after API prompt dismissed.
-            if ( response == "granted" ) {
-                window.addEventListener( "devicemotion", (e) => {
-                    // do something for 'e' here.
-                    start_gn();
-                  })
+              console.log(response);
+              if ( response == "granted" ) {
+              start_gn();
             }
         })
             .catch( console.error )
     } else {
-        alert( "DeviceMotionEvent is not defined" );
+        alert( "You cant play :/" );
     }
 }
   const btn = document.getElementById( "request" );
