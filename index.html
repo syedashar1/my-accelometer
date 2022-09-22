@@ -13,14 +13,40 @@
     <input type="text" style="font-size: 60px; width: 150px" class="form-control" id="dm_gx" disabled>
   </div>
 
+  <button id="request"> 
+    Ask permissions
+  </button>
+
   <script type="text/javascript">
+    
+    function permission () {
+    if ( typeof( DeviceMotionEvent ) !== "undefined" && typeof( DeviceMotionEvent.requestPermission ) === "function" ) {
+        // (optional) Do something before API request prompt.
+        DeviceMotionEvent.requestPermission()
+            .then( response => {
+            // (optional) Do something after API prompt dismissed.
+            if ( response == "granted" ) {
+                window.addEventListener( "devicemotion", (e) => {
+                    // do something for 'e' here.
+                })
+            }
+        })
+            .catch( console.error )
+    } else {
+        alert( "DeviceMotionEvent is not defined" );
+    }
+}
+  const btn = document.getElementById( "request" );
+  btn.addEventListener( "click", permission );
+    
+    
     var gn;
 
     function init_gn() {
       var args = {
          
       };
-      
+
       gn = new GyroNorm();
 
       gn.init(args).then(function() {
