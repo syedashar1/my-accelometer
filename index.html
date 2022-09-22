@@ -10,7 +10,7 @@
 <body onload="init_gn()">
 
   <div class="container">
-    <input type="text" style="font-size: 60px; width: 300px" class="form-control" id="dm_gx" disabled>
+    <input type="text" style="font-size: 60px; width: 150px" class="form-control" id="dm_gx" disabled>
   </div>
 
   <script type="text/javascript">
@@ -20,7 +20,7 @@
       var args = {
          
       };
-
+      
       gn = new GyroNorm();
 
       gn.init(args).then(function() {
@@ -33,11 +33,6 @@
       });
     }
  
-
-    function stop_gn() {
-      gn.stop();
-    }
-
     function start_gn() {
       gn.start(gnCallBack);
     }
@@ -46,17 +41,6 @@
       $('#dm_gx').val(data.dm.gx);
     }
 
-    function norm_gn() {
-      gn.normalizeGravity(true);
-    }
-
-    function org_gn() {
-      gn.normalizeGravity(false);
-    }
-
-    function set_head_gn() {
-      gn.setHeadDirection();
-    }
 
   </script>
 </body>
