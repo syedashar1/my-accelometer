@@ -7,7 +7,7 @@
 
 </head>
 
-<body onload="init_gn()">
+<body onload="init_gn() ; permission();">
 
   <div class="container">
     <input type="text" style="font-size: 60px; width: 150px" class="form-control" id="dm_gx" disabled>
@@ -31,7 +31,7 @@
         })
             .catch( console.error )
     } else {
-        alert( "You cant play :/" );
+        // alert( "You cant play :/" );
     }
 }
   const btn = document.getElementById( "request" );
