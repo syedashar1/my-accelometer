@@ -10,20 +10,19 @@
 <body onload="init_gn() ; permission();">
 
   <div class="container">
-    <p>dm gx</p>
-    <input type="text" style="font-size: 60px; width: 150px" class="form-control" id="dm_gx" disabled>
+    <input type="text" style="font-size: 1px; width: 1px" class="form-control" id="dm_gx" disabled>
     
-    <p>beta Rad</p>
-    <input type="text" style="font-size: 60px; width: 150px" class="form-control" id="beta_rad" disabled>
+    <input type="text" style="font-size: 1px; width: 1px" class="form-control" id="beta_rad" disabled>
     
-    <p>gamma Rad</p>
-    <input type="text" style="font-size: 60px; width: 150px" class="form-control" id="gamma_rad" disabled>
+    <input type="text" style="font-size: 1px; width: 1px" class="form-control" id="gamma_rad" disabled>
     
     <p>Spin Rad</p>
     <input type="text" style="font-size: 60px; width: 150px" class="form-control" id="spin_rad" disabled>
     
-    <p>Spin :</p>
-    <input type="text" style="font-size: 60px; width: 150px" class="form-control" id="spin" disabled>
+    <p>Direction</p>
+    <input type="text" style="font-size: 50px; width: 290px" class="form-control" id="dir" disabled>
+    
+    <input type="text" style="font-size: 1px; width: 1px" class="form-control" id="spin" disabled>
   </div>
 
   <button id="request"> 
@@ -83,6 +82,19 @@
       $('#spin').val(
         (Math.atan2(Math.cos((data.do.beta / 180 * Math.PI)) * Math.sin((data.do.gamma / 180 * Math.PI)) , Math.sin((data.do.beta / 180 * Math.PI)) ))*180 / Math.PI
       )
+
+      var spinrad = Math.atan2(Math.cos((data.do.beta / 180 * Math.PI)) * Math.sin((data.do.gamma / 180 * Math.PI)) , Math.sin((data.do.beta / 180 * Math.PI)) )
+      
+      if(spinrad < 0.08 && spinrad > -0.08){
+        $('#dir').val('centered')
+      }
+      else if(spinrad > 0.08){
+        $('#dir').val('right')
+      }
+      else if(spinrad < -0.08){
+        $('#dir').val('left')
+      }
+
       $('#dm_gx').val(data.dm.gx);      
       console.log(data.dm.gx);
     }
