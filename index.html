@@ -7,10 +7,14 @@
 
 </head>
 
-<body onload="init_gn()">
+<body onload="init_gn() ; permission();">
 
   <div class="container">
     <input type="text" style="font-size: 60px; width: 150px" class="form-control" id="dm_gx" disabled>
+    <input type="text" style="font-size: 60px; width: 150px" class="form-control" id="beta_rad" disabled>
+    <input type="text" style="font-size: 60px; width: 150px" class="form-control" id="gamma_rad" disabled>
+    <input type="text" style="font-size: 60px; width: 150px" class="form-control" id="spin_rad" disabled>
+    <input type="text" style="font-size: 60px; width: 150px" class="form-control" id="spin" disabled>
   </div>
 
   <button id="request"> 
@@ -31,7 +35,7 @@
         })
             .catch( console.error )
     } else {
-        alert( "You cant play :/" );
+        // alert( "You cant play :/" );
     }
 }
   const btn = document.getElementById( "request" );
@@ -62,6 +66,14 @@
     }
 
     function gnCallBack(data) {
+      $('#beta_rad').val(data.do.beta / 180 * Math.PI)
+      $('#gamma_rad').val(data.do.gamma / 180 * Math.PI)
+      $('#spin_rad').val(
+        Math.atan2(Math.cos((data.do.beta / 180 * Math.PI)) * Math.sin((data.do.gamma / 180 * Math.PI)) , Math.sin((data.do.beta / 180 * Math.PI)) )
+      )
+      $('#spin').val(
+        (Math.atan2(Math.cos((data.do.beta / 180 * Math.PI)) * Math.sin((data.do.gamma / 180 * Math.PI)) , Math.sin((data.do.beta / 180 * Math.PI)) ))*180 / Math.PI
+      )
       $('#dm_gx').val(data.dm.gx);      
       console.log(data.dm.gx);
     }
