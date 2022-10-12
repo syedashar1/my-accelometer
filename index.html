@@ -10,6 +10,14 @@
 <body onload="init_gn() ; permission();">
 
   <div class="container">
+    
+    <p>Width</p>
+    <input type="text" style="font-size: 50px; width: 290px" class="form-control" id="width" disabled>
+    <p>height</p>
+    <input type="text" style="font-size: 50px; width: 290px" class="form-control" id="height" disabled>
+    
+    
+    
     <input type="text" style="font-size: 1px; width: 1px" class="form-control" id="dm_gx" disabled>
     
     <input type="text" style="font-size: 1px; width: 1px" class="form-control" id="beta_rad" disabled>
@@ -30,6 +38,9 @@
   </button>
 
   <script type="text/javascript">
+    
+    $('#width').val(window.innerWidth)    
+    $('#height').val(window.innerHeight)
     
     function permission () {
     if ( typeof( DeviceMotionEvent ) !== "undefined" && typeof( DeviceMotionEvent.requestPermission ) === "function" ) {
